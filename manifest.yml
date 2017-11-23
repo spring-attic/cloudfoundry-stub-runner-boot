@@ -2,8 +2,8 @@
 applications:
 - name: stubrunner
   services:
-    - github-rabbitmq
-    - github-eureka
+    - service-registry
   env:
-    SPRING_PROFILES_ACTIVE: cloud
-    DEBUG: "true"
+    #SPRING_PROFILES_ACTIVE: c2c
+    TRUST_CERTS: api.run.pivotal.io
+    #DEBUG: "true"

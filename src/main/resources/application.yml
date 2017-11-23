@@ -1,8 +1,10 @@
 stubrunner:
+  # please register the stubs in a real eureka instead of faking it
   cloud.stubbed.discovery.enabled: false
-  repositoryRoot: ${REPO_WITH_JARS:http://localhost:8081/artifactory/libs-release-local}
+  repositoryRoot: ${REPO_WITH_JARS}
+  username: ${M2_SETTINGS_REPO_USERNAME}
+  password: ${M2_SETTINGS_REPO_PASSWORD}
 server.port: ${PORT:8083}
 spring:
-  cloud.stream.defaultBinder: rabbit
   application:
     name: stubrunner

@@ -3,18 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example.github</groupId>
-	<artifactId>github-analytics-stub-runner-boot</artifactId>
+	<groupId>io.pivotal</groupId>
+	<artifactId>service-discovery-stub-runner</artifactId>
 	<version>0.0.1.M1</version>
 	<packaging>jar</packaging>
 
-	<name>github-analytics-stub-runner-boot</name>
+	<name>service-discovery-stub-runner</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.6.RELEASE</version>
+		<version>1.5.8.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -22,14 +22,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<spring-cloud-contract.version>1.1.1.RELEASE</spring-cloud-contract.version>
-		<spring-cloud-bom.version>Dalston.SR3</spring-cloud-bom.version>
+		<spring-cloud-services.version>1.5.0.RELEASE</spring-cloud-services.version>
+		<spring-cloud-contract.version>1.1.4.RELEASE</spring-cloud-contract.version>
+		<spring-cloud-bom.version>Dalston.SR4</spring-cloud-bom.version>
 		<distribution.management.release.id>artifactory-local</distribution.management.release.id>
 		<distribution.management.release.url>http://localhost:8081/artifactory/libs-release-local</distribution.management.release.url>
-		<!-- KUBERNETES -->
-		<docker.image.prefix>scpipelines</docker.image.prefix>
-		<docker.server.id>docker-repo</docker.server.id>
-		<docker.registry.url>hub.docker.com</docker.registry.url>
 	</properties>
 
 	<distributionManagement>
@@ -59,25 +56,12 @@
 			<artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream-binder-rabbit</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream-test-support</artifactId>
+			<groupId>io.pivotal.spring.cloud</groupId>
+			<artifactId>spring-cloud-services-starter-service-registry</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-contract-verifier</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream-binder-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -87,6 +71,13 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>${spring-cloud-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.pivotal.spring.cloud</groupId>
+				<artifactId>spring-cloud-services-dependencies</artifactId>
+				<version>${spring-cloud-services.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -138,54 +129,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
-
-
-	<profiles>
-		<profile>
-			<id>docker</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.spotify</groupId>
-						<artifactId>docker-maven-plugin</artifactId>
-						<version>0.4.11</version>
-						<configuration>
-							<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-							<baseImage>frolvlad/alpine-oraclejdk8:slim</baseImage>
-								<env>
-									<SYSTEM_PROPS>-Dfoo=bar</SYSTEM_PROPS>
-								</env>
-								<entryPoint>["sh", "-c", "java $${SYSTEM_PROPS} -Djava.security.egd=file:/dev/./urandom -jar /${project.build.finalName}.jar"]</entryPoint>
-							<resources>
-								<resource>
-									<targetPath>/</targetPath>
-									<directory>${project.build.directory}</directory>
-									<include>${project.build.finalName}.jar</include>
-								</resource>
-							</resources>
-							<serverId>${docker.server.id}</serverId>
-							<imageTags>
-								<imageTag>${project.version}</imageTag>
-								<imageTag>latest</imageTag>
-							</imageTags>
-						</configuration>
-						<executions>
-							<execution>
-								<id>push-image</id>
-								<phase>deploy</phase>
-								<goals>
-									<goal>push</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 </project>

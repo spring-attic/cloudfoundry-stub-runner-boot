@@ -8,9 +8,8 @@ import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRun
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.test.binder.TestSupportBinderAutoConfiguration;
 
-@SpringBootApplication(exclude = TestSupportBinderAutoConfiguration.class)
+@SpringBootApplication
 @EnableStubRunnerServer
-@EnableBinding
 @EnableDiscoveryClient
 public class GithubAnalyticsStubRunnerBootApplication {
 
