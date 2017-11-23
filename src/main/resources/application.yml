@@ -8,3 +8,12 @@ server.port: ${PORT:8083}
 spring:
   application:
     name: stubrunner
+
+security:
+  basic:
+    enabled: false
+
+management:
+  security:
+    enabled: false
+
