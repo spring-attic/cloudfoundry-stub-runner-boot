@@ -1,20 +1,18 @@
-package org.springframework.github;
+package io.pivotal.stubrunner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.contract.stubrunner.server.EnableStubRunnerServer;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.test.binder.TestSupportBinderAutoConfiguration;
 
 @SpringBootApplication
 @EnableStubRunnerServer
 @EnableDiscoveryClient
-public class GithubAnalyticsStubRunnerBootApplication {
+public class CfStubRunnerBootApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GithubAnalyticsStubRunnerBootApplication.class, args);
+		SpringApplication.run(CfStubRunnerBootApplication.class, args);
 	}
 
 	@AutoConfigureStubRunner

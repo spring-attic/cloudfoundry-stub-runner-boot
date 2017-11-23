@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.pivotal</groupId>
-	<artifactId>service-discovery-stub-runner</artifactId>
+	<artifactId>cf-stubrunner</artifactId>
 	<version>0.0.1.M1</version>
 	<packaging>jar</packaging>
 
-	<name>service-discovery-stub-runner</name>
+	<name>cf-stubrunner</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
