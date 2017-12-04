@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.pivotal</groupId>
-	<artifactId>cf-stubrunner</artifactId>
+	<artifactId>cloudfoundry-stub-runner-boot</artifactId>
 	<version>0.0.1.M1</version>
 	<packaging>jar</packaging>
 
-	<name>cf-stubrunner</name>
+	<name>cloudfoundry-stub-runner-boot</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
