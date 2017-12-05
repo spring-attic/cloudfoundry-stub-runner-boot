@@ -1,7 +1,0 @@
----
-applications:
-- name: stubrunner
-  services:
-    - service-registry
-  env:
-    TRUST_CERTS: api.run.pivotal.io
