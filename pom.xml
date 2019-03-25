@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.pivotal</groupId>
@@ -25,7 +25,7 @@
 		<spring-cloud-services.version>1.5.0.RELEASE</spring-cloud-services.version>
 		<spring-cloud-bom.version>Edgware.BUILD-SNAPSHOT</spring-cloud-bom.version>
 		<distribution.management.release.id>artifactory-local</distribution.management.release.id>
-		<distribution.management.release.url>http://localhost:8081/artifactory/libs-release-local</distribution.management.release.url>
+		<distribution.management.release.url>https://localhost:8081/artifactory/libs-release-local</distribution.management.release.url>
 	</properties>
 
 	<distributionManagement>
